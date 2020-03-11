@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <header class= "TitleBox">
+        <h1 class="TitleText">Welcome To Zelda Hangman!</h1>
+       </header>
+        <h2>Press any key to get started!</h2>
+        <h2 id="Win-Counter">Wins: 0</h2>
+
+
+    <script>
+        //creating a variable that will hold all possible words in an array
+        var wordbank = [
+            "Epona",
+            "Ganondorf",
+            "Triforce",
+            "Gerudo"]
+        var Selectedchoice = "fire"
+
+        // creating a variable that will directly affect it's place in the html
+        console.log("-------------");
+
+       var wins = document.getElementById("Win-Counter");
+
+       winNumber = 0;
+       console.log(winNumber)
+       console.log("-------------");
+
+       //every time something happens, wins will go up by 1 (for now, if win number is greater than 0)
+        if (winNumber > 0) {
+           alert("you've won the game")
+           wins.textContent = ("wins:" + winNumber);
+           winNumber++
+           console.log(winNumber)
+           console.log("true")
+        //if not console should say false here
+       } else {
+           console.log("false")
+       }
+       console.log("-------------");
+       function Randomchoice() {
+       wordbank[Math.floor(Math.random() * wordbank.length)]
+       }
+
+       console.log(Randomchoice)
+
+        
+
+    </script>
+
+
+
+
+
+
+
+    
+    </body>
+</html>
