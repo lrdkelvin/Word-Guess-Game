@@ -13,6 +13,7 @@
         <h2>Press any key to get started!</h2>
         <h2 id="Win-Counter">Wins: 0</h2>
         <h2 id ="Puzzle-Text"></h2>
+        <button onclick="myFunction()">Try it</button>
 
 
     <script>
@@ -32,8 +33,14 @@
             "s h e i k a h",
 
             ]
-        var Selectedchoice = "fire"
+            //create an array that holds the alphabet
+        var alphabet =  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+        "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
         var puzzletext = document.getElementById("Puzzle-Text");
+
+
+
+
 
         // creating a variable that will directly affect it's place in the html
         console.log("-------------");
@@ -46,10 +53,10 @@
 
        
 
-       // when a key is pressed, a random choice will be selected from the word bank....
+       // when the page is loaded, a random choice will be selected from the word bank....
 
 
-       document.onkeyup = function(event) {
+       
 
        var randomselection = wordbank[Math.floor(Math.random() * wordbank.length)];
 
@@ -64,7 +71,62 @@ console.log("-------------");
 console.log(puzzletext)
         // and place those underscores directly on the webpage
 puzzletext.textContent = unsolvedchoice;
+console.log("-------------");
+        // this function will convert the unsolved choice and the answer strings so i can use includes and search for the hyphen 
+        // this will allow the game to begin
+            var unsolvedchoicestring = String(unsolvedchoice);
+            var puzzlestring = String(puzzletext);
+            var n = unsolvedchoicestring.includes("_");
+      
+
+
+       console.log("puzzletext contain underscore? " + n);
+
+       if (n = "true"){
+           alert("the game has begun!");
+           console.log ("the game has started");
+           
+
+
+       } else {console.log("the game has not begun")}
+
+       //now the game has started, I'll add an event listener for the key being pressed
+       document.onkeyup = function(event) {
+           console.log("you just pressed " + event.key)
+
+           var guess = event.key.toLowerCase();
+           console.log("lowercase guess is " + guess)
+
+        // if the key matches up
+
+           var keychecker = randomselection.includes(event.key);
+           console.log("puzzle string includes it? " + keychecker);
+           var alphabetchecker = alphabet.includes(guess);
+           console.log("does alpabet include guess? " + alphabetchecker);
+
+       // an if staetment that will check if the key pressed matches the "answer" contained in puzzletextString
+
+       if (keychecker === true && alphabetchecker === true) {
+           console.log("You got a letter right!!")
+
        }
+       
+       else if ( keychecker === false && alphabetchecker === true) {
+           console.log("no you are wrong")
+       } 
+       
+       else {
+           console.log("wow you broke it-- nothing should happen")
+       }
+
+    
+
+
+       }
+
+    
+       
+       
 
         //every time something happens, wins will go up by 1 (for now, if win number is greater than 0)
         if (winNumber > 0) {
@@ -79,6 +141,8 @@ puzzletext.textContent = unsolvedchoice;
        }
        console.log("-------------");
 
+
+      
         
 
     </script>
