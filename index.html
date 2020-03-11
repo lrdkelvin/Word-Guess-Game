@@ -12,16 +12,28 @@
        </header>
         <h2>Press any key to get started!</h2>
         <h2 id="Win-Counter">Wins: 0</h2>
+        <h2 id ="Puzzle-Text"></h2>
 
 
     <script>
         //creating a variable that will hold all possible words in an array
         var wordbank = [
-            "Epona",
-            "Ganondorf",
-            "Triforce",
-            "Gerudo"]
+            "e p o n a",
+            "g a n o n d o r f",
+            "t r i f o r c e",
+            "g e r u d o",
+            "h o o k s h o t",
+            "b o o m e r a n g",
+            "o c a r i n a",
+            "g o r o n",
+            "t i n g l e",
+            "t e r m i n a",
+            "m a j o r a",
+            "s h e i k a h",
+
+            ]
         var Selectedchoice = "fire"
+        var puzzletext = document.getElementById("Puzzle-Text");
 
         // creating a variable that will directly affect it's place in the html
         console.log("-------------");
@@ -32,23 +44,40 @@
        console.log(winNumber)
        console.log("-------------");
 
-       //every time something happens, wins will go up by 1 (for now, if win number is greater than 0)
+       
+
+       // when a key is pressed, a random choice will be selected from the word bank....
+
+
+       document.onkeyup = function(event) {
+
+       var randomselection = wordbank[Math.floor(Math.random() * wordbank.length)];
+
+       console.log("the choice made is " +randomselection);
+       console.log("-------------");
+       
+       //and will convert all charcters into underscores...
+        var unsolvedchoice = randomselection.replace(/a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z/g, "_");
+        console.log("here you should see underscores " + unsolvedchoice)
+
+console.log("-------------");
+console.log(puzzletext)
+        // and place those underscores directly on the webpage
+puzzletext.textContent = unsolvedchoice;
+       }
+
+        //every time something happens, wins will go up by 1 (for now, if win number is greater than 0)
         if (winNumber > 0) {
            alert("you've won the game")
            wins.textContent = ("wins:" + winNumber);
            winNumber++
            console.log(winNumber)
-           console.log("true")
+           console.log("Win counter is working")
         //if not console should say false here
        } else {
-           console.log("false")
+           console.log("User has not won the game yet")
        }
        console.log("-------------");
-       function Randomchoice() {
-       wordbank[Math.floor(Math.random() * wordbank.length)]
-       }
-
-       console.log(Randomchoice)
 
         
 
