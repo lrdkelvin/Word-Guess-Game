@@ -13,12 +13,14 @@
         <h2>Press any key to get started!</h2>
         <h2 id="Win-Counter">Wins: 0</h2>
         <h2 id ="Puzzle-Text"></h2>
-        <h2 id = "Lives-Text">Lives Left: 10</h2>
+        <h2 id = "Lives-Text">Lives Left: 5</h2>
         <h2 id = "Wrong-Guesses"></h2>
         <button onclick="myFunction()">Try it</button>
 
 
     <script>
+        //this number should not reset everytime the game reloads
+         winNumber = 1;
         function Gamereset() {
         //creating a variable that will hold all possible words in an array
         var wordbank = [
@@ -34,6 +36,11 @@
             "t e r m i n a",
             "m a j o r a",
             "s h e i k a h",
+            "w i n d w a k e r",
+            "m a s t e r s w o r d",
+            "z o r a s",
+            "g r e a t f a i r y",
+
 
             ]
             //create an array that holds the alphabet
@@ -42,7 +49,7 @@
         // create an array to keep the bad guesses
         var wrongguesses = [];
         // an array that tracks lifes that are left
-        var livesleft = 10
+        var livesleft = 5
         // more variables to affect its place in the html
         var puzzletext = document.getElementById("Puzzle-Text");
         var livestext = document.getElementById("Lives-Text")
@@ -60,7 +67,7 @@
 
        var wins = document.getElementById("Win-Counter");
 
-       winNumber = 0;
+      
        console.log(winNumber)
        console.log("-------------");
 
@@ -106,7 +113,7 @@ console.log("-------------");
        console.log("puzzletext contain underscore? " + n);
 
        if (n = "true"){
-           alert("the game has begun!");
+           alert("It's dangerous to go alone!");
            console.log ("the game has started");
            
 
@@ -216,7 +223,7 @@ console.log("-------------");
 
 // if lifes reaches 0, you lose and the game resets with a new choice
        if (livesleft === 0)  {
-           alert("Game Over!")
+           alert("Game Over! Don't give up!  Try Again!")
            Gamereset();
            livestext.textContent = "Lives Left 10"
            wrongguesses.textContent = "";
@@ -232,6 +239,9 @@ console.log("-------------");
            if (unsolvedarry.includes("_") === false)  {
             Gamehasbeenwon = true;
             alert("you won the game!  Press any key to try a new one!");
+            wins.textContent = ("Wins: " + winNumber);
+           winNumber++
+           console.log ("the number of wins will next be " + winNumber)
             document.onkeyup = function(event) {
                 Gamereset();
             }
@@ -259,18 +269,7 @@ console.log("-------------");
        
        
 
-        //every time something happens, wins will go up by 1 (for now, if win number is greater than 0)
-        if (winNumber > 0) {
-           alert("you've won the game")
-           wins.textContent = ("wins:" + winNumber);
-           winNumber++
-           console.log(winNumber)
-           console.log("Win counter is working")
-        //if not console should say false here
-       } else {
-           console.log("User has not won the game yet")
-       }
-       console.log("-------------");
+        
 
 
       
