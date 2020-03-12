@@ -6,17 +6,19 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     </head>
-    <body>
+    <body onload="Gamereset()">
         <header class= "TitleBox">
         <h1 class="TitleText">Welcome To Zelda Hangman!</h1>
        </header>
         <h2>Press any key to get started!</h2>
         <h2 id="Win-Counter">Wins: 0</h2>
         <h2 id ="Puzzle-Text"></h2>
+        <h2 id = "Lives-Text">Lives Left: 10</h2>
         <button onclick="myFunction()">Try it</button>
 
 
     <script>
+        function Gamereset() {
         //creating a variable that will hold all possible words in an array
         var wordbank = [
             "e p o n a",
@@ -36,7 +38,13 @@
             //create an array that holds the alphabet
         var alphabet =  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
         "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        // create an array to keep the bad guesses
+        var wrongguesses = [""]
+        // an array that tracks lifes that are left
+        var livesleft = 10
+        // more variables to affect its place in the html
         var puzzletext = document.getElementById("Puzzle-Text");
+        var livestext = document.getElementById("Lives-Text")
 
 
 
@@ -54,6 +62,7 @@
        
 
        // when the page is loaded, a random choice will be selected from the word bank....
+    
 
 
        
@@ -77,7 +86,7 @@ console.log("-------------");
             var unsolvedchoicestring = String(unsolvedchoice);
             var puzzlestring = String(puzzletext);
             var n = unsolvedchoicestring.includes("_");
-      
+       
 
 
        console.log("puzzletext contain underscore? " + n);
@@ -89,10 +98,13 @@ console.log("-------------");
 
 
        } else {console.log("the game has not begun")}
+       
 
        //now the game has started, I'll add an event listener for the key being pressed
        document.onkeyup = function(event) {
            console.log("you just pressed " + event.key)
+
+        // converts the guess to lowercase in case of capslock
 
            var guess = event.key.toLowerCase();
            console.log("lowercase guess is " + guess)
@@ -109,14 +121,28 @@ console.log("-------------");
        if (keychecker === true && alphabetchecker === true) {
            console.log("You got a letter right!!")
 
+
        }
        
        else if ( keychecker === false && alphabetchecker === true) {
-           console.log("no you are wrong")
+           console.log("no you are wrong");
+           livesleft--;
+           console.log("lives left = " + livesleft);
+           livestext.textContent = "Lives Left " + livesleft;
+
        } 
        
        else {
            console.log("wow you broke it-- nothing should happen")
+       }
+
+// if lifes reaches 0, you lose and the game resets with a new choice
+       if (livesleft === 0)  {
+           alert("Game Over!")
+           Gamereset();
+           livestext.textContent = "Lives Left 10"
+       }
+
        }
 
     
