@@ -99,7 +99,7 @@ console.log("-------------");
 
        } else {console.log("the game has not begun")}
        
-
+       console.log("-------------");
        //now the game has started, I'll add an event listener for the key being pressed
        document.onkeyup = function(event) {
            console.log("you just pressed " + event.key)
@@ -109,14 +109,20 @@ console.log("-------------");
            var guess = event.key.toLowerCase();
            console.log("lowercase guess is " + guess)
 
-        // if the key matches up
-
+        // if the key matches up...
+        console.log("-------------");
            var keychecker = randomselection.includes(event.key);
            console.log("puzzle string includes it? " + keychecker);
            var alphabetchecker = alphabet.includes(guess);
            console.log("does alpabet include guess? " + alphabetchecker);
 
-       // an if staetment that will check if the key pressed matches the "answer" contained in puzzletextString
+    // variable that checks if we have already guessed something wrong
+    console.log("-------------");
+    var wrongguesschecker = wrongguesses.includes(guess);
+    console.log("has this letter been guessed wrong yet?" + wrongguesschecker)
+
+       // an if staetment that will check if the key pressed matches the "answer" contained in alphabetchecker
+
 
        if (keychecker === true && alphabetchecker === true) {
            console.log("You got a letter right!!")
@@ -124,17 +130,23 @@ console.log("-------------");
 
        }
        
-       else if ( keychecker === false && alphabetchecker === true) {
+       else if ( keychecker === false && alphabetchecker === true && wrongguesschecker === false) {
            console.log("no you are wrong");
+           // this will lower the lives down by one everytime a wrong guess happens
            livesleft--;
            console.log("lives left = " + livesleft);
+           // this writes it to the HTML
            livestext.textContent = "Lives Left " + livesleft;
+           // pushes the wrong guess into the wrong guess array
+           wrongguesses.push(guess);
+           console.log("wrong guesses now contain " + wrongguesses)
 
        } 
        
        else {
            console.log("wow you broke it-- nothing should happen")
        }
+       console.log("-------------");
 
 // if lifes reaches 0, you lose and the game resets with a new choice
        if (livesleft === 0)  {
