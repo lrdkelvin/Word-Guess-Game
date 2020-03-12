@@ -13,9 +13,8 @@
         <h2>Press any key to get started!</h2>
         <h2 id="Win-Counter">Wins: 0</h2>
         <h2 id ="Puzzle-Text"></h2>
-        <h2 id = "Lives-Text">Lives Left: 5</h2>
-        <h2 id = "Wrong-Guesses"></h2>
-        <button onclick="myFunction()">Try it</button>
+        <h2 id = "Lives-Text">Lives Left: 6</h2>
+        <h2 id = "Wrong-Guesses">Wrong guesses: </h2>
 
 
     <script>
@@ -49,7 +48,7 @@
         // create an array to keep the bad guesses
         var wrongguesses = [];
         // an array that tracks lifes that are left
-        var livesleft = 5
+        var livesleft = 6
         // more variables to affect its place in the html
         var puzzletext = document.getElementById("Puzzle-Text");
         var livestext = document.getElementById("Lives-Text")
@@ -103,7 +102,8 @@ console.log(puzzletext)
         // and place those underscores directly on the webpage
 puzzletext.textContent = squisedarray
 console.log("-------------");
-        // this function will convert the unsolved choice and the answer strings so i can use includes and search for the hyphen 
+        // this function will convert the unsolved choice and the answer strings so i can use
+        // includes and search for the hyphen 
         // this will allow the game to begin
             var puzzlestring = String(puzzletext);
             var n = unsolvedarry.includes("_");
@@ -209,7 +209,8 @@ console.log("-------------");
            // pushes the wrong guess into the wrong guess array
            wrongguesses.push(guess);
            console.log("wrong guesses now contain " + wrongguesses);
-           wrongtext.textContent= wrongguesses
+           // writes the new number to the HTML
+           wrongtext.textContent= ("Wrong guesses: " + wrongguesses);
            
 
 
@@ -225,9 +226,9 @@ console.log("-------------");
        if (livesleft === 0)  {
            alert("Game Over! Don't give up!  Try Again!")
            Gamereset();
-           livestext.textContent = "Lives Left 10"
+           livestext.textContent = "Lives Left 6";
            wrongguesses.textContent = "";
-           wrongtext.textContent= "";
+           wrongtext.textContent= "Wrong guesses: ";
        }
 
        //we'll check if the game is won
@@ -243,6 +244,9 @@ console.log("-------------");
            winNumber++
            console.log ("the number of wins will next be " + winNumber)
             document.onkeyup = function(event) {
+                wrongguesses.textContent = "";
+                wrongtext.textContent= "Wrong guesses: ";
+                livestext.textContent = "Lives Left 6";
                 Gamereset();
             }
 
